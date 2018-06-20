@@ -14,14 +14,15 @@ namespace :aws do
   task :upload => :dotenv do
     s3 = Aws::S3::Resource.new
     puts 'Uploading VMDK'
-    s3.bucket(ENV.fetch('S3_BUCKET')).object('oracle-7.4-x86_64-disk1.vmdk').upload_file('output/oracle-7.4-x86_64-disk1.vmdk')
+    vmdk_file = 'oracle-7.4-x86_64-disk001.vmdk'
+    s3.bucket(ENV.fetch('S3_BUCKET')).object(vmdk_file).upload_file('output/' + vmdk_file)
     puts 'Upload Complete'
   end
 
   desc 'Import the VMDK to EC2 (create an AMI)'
   task :import_image => :dotenv do
     s3 = Aws::S3::Resource.new
-    object = s3.bucket(ENV.fetch('S3_BUCKET')).object('oracle-7.4-x86_64-disk1.vmdk')
+    object = s3.bucket(ENV.fetch('S3_BUCKET')).object(vmdk_file)
     payload = {
       dry_run: false,
       description: 'Oracle Linux 7.4 x64',
