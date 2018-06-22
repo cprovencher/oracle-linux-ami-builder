@@ -9,12 +9,12 @@ namespace :packer do
   end
 end
 
+vmdk_file = 'oracle-7.4-x86_64-disk001.vmdk'
 namespace :aws do
   desc 'Upload VMDK to S3 bucket'
   task :upload => :dotenv do
     s3 = Aws::S3::Resource.new
     puts 'Uploading VMDK'
-    vmdk_file = 'oracle-7.4-x86_64-disk001.vmdk'
     s3.bucket(ENV.fetch('S3_BUCKET')).object(vmdk_file).upload_file('output/' + vmdk_file)
     puts 'Upload Complete'
   end
