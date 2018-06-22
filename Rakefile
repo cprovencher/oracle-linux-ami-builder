@@ -5,7 +5,7 @@ require 'awesome_print'
 namespace :packer do
   desc 'Upload VMDK to with Packer'
   task :build do
-    system 'packer build --force oracle-7.4-x86_64.json'
+    system 'packer build --force packer.json'
   end
 end
 
