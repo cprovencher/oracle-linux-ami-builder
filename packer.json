@@ -46,6 +46,7 @@
         "scripts/ec2.sh",
         "scripts/cleanup.sh",
         "scripts/minimize.sh"
+        "scripts/shutdown.sh"
       ],
       "type": "shell"
     }
