@@ -6,7 +6,7 @@ sed -i 's/gecos: Fedora Cloud User/gecos: EC2 Default User/g' /etc/cloud/cloud.c
 sed -i 's/distro: fedora/distro: rhel/g' /etc/cloud/cloud.cfg
 
 # use first grub option
-grub2-set-default 0
+grub2-set-default 1
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 # lock login user
