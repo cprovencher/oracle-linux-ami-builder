@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-echo -e "\nnameserver 8.8.8.8" >> /etc/resolv.conf
-systemctl restart network
+
+sudo echo -e "\nnameserver 8.8.8.8" >> /etc/resolv.conf
+sudo systemctl restart network
+sudo yum -y update
+sudo yum -y install cloud-init
 
 sudo setenforce 0 && \
 sudo sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
@@ -12,7 +15,7 @@ enabled=1
 gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
-# sudo yum -y update --exclude="docker-engine*"
+
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF
 [Service]
@@ -29,11 +32,8 @@ sudo yum install -y curl
 sudo yum install -y xz
 sudo yum install -y ipset
 sudo yum install -y ntp
-yum -y install cloud-init
 sudo systemctl enable ntpd
 sudo systemctl start ntpd
 sudo getent group nogroup || sudo groupadd nogroup
 sudo getent group docker || sudo groupadd docker
 sudo touch /opt/dcos-prereqs.installed
-
-sudo iptables -D INPUT -j REJECT --reject-with icmp-host-prohibited

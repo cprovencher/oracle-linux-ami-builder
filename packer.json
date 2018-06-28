@@ -11,7 +11,7 @@
       "http_directory": "http",
       "iso_checksum": "298724f8eaa0dbf961c608c4965be70e",
       "iso_checksum_type": "md5",
-      "iso_url": "file://OracleLinux-R7-U4-Server-x86_64-dvd.iso",
+      "iso_url": "http://mirrors.kernel.org/oracle/OL7/u4/x86_64/OracleLinux-R7-U4-Server-x86_64-dvd.iso",
       "ssh_password": "ec2-user",
       "ssh_port": 22,
       "ssh_username": "ec2-user",
@@ -41,12 +41,11 @@
       "environment_vars": [],
       "execute_command": "echo 'ec2-user' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
-        "scripts/sshd.sh",
         "scripts/install_dcos_prerequisites.sh",
+        "scripts/sshd.sh",
         "scripts/ec2.sh",
         "scripts/cleanup.sh",
         "scripts/minimize.sh"
-        "scripts/shutdown.sh"
       ],
       "type": "shell"
     }
