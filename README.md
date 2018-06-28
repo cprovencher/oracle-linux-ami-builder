@@ -17,7 +17,7 @@ Somewhat inspired by Chef's [Bento](https://github.com/chef/bento).
 * Single partition - grows on first boot (to assume full size of allocated storage like stock AMIs).
 * Compressed size around 430MB.
 * `cloud-init` for configuration and retrieval of authorized SSH keys on first boot.
-* Username `ec2-user` (added to sudoers). Password locked (login via key only).
+* Username `oracle` (added to sudoers). Password locked (login via key only).
 * No root SSH login, root password locked.
 * No password based SSH login - keys only.
 * Uses RHCK kernel, can be set to UEK on or after first boot.
